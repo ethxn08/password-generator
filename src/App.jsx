@@ -7,7 +7,6 @@ function App() {
   const [selectedOption, setSelectedOption] = useState("yes");
   const [randomPassword, setRandomPass] = useState("");
 
-  // Maneja el cambio en los botones de opción
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
