@@ -7,7 +7,6 @@ function App() {
   const [selectedOption, setSelectedOption] = useState("yes");
   const [randomPassword, setRandomPass] = useState("");
 
-  // Maneja el cambio en los botones de opción
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
@@ -20,7 +19,7 @@ function App() {
           <p>{charCounter}</p>
           <input
             type="range"
-            min="0"
+            min="1"
             max="35"
             defaultValue={9}
             onChange={(e) => setCharCounter(e.target.value)}
@@ -56,12 +55,10 @@ function App() {
           Generate the new password
         </button>
 
-        {randomPassword !== "" && (
-          <div>
-            <h2>Your password is: </h2>
-            <h3>{randomPassword}</h3>
-          </div>
-        )}
+        <div>
+          {randomPassword !== "" && <h2>Your password is: </h2>}
+          <h3>{randomPassword}</h3>
+        </div>
       </div>
     </>
   );
