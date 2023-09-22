@@ -3,12 +3,6 @@ function generatePassword(longitud, selectedOption) {
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   const specialChars = ".,&%$!?¿";
 
-  // Agregar caracteres especiales si selectedOption es "yes"
-  let withSpecialChar = characters;
-  if (selectedOption === "yes") {
-    withSpecialChar += specialChars;
-  }
-
   let randomPassword = "";
 
   if (selectedOption === "yes") {
@@ -21,8 +15,8 @@ function generatePassword(longitud, selectedOption) {
   }
 
   for (let i = 0; i < longitud; i++) {
-    const randomIndex = Math.floor(Math.random() * withSpecialChar.length);
-    randomPassword += withSpecialChar.charAt(randomIndex);
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    randomPassword += characters.charAt(randomIndex);
   }
 
   return randomPassword;
