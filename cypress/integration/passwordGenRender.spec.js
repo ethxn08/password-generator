@@ -17,10 +17,11 @@ describe("Password Generation", () => {
       expect(newPassword).not.to.equal(initialPassword);
     });
   });
+
   it("Generate a password with special characters", () => {
     cy.visit("http://localhost:5173");
 
-    cy.get('input[id="yes"]').check();
+    cy.get("#yes").check();
 
     cy.contains("Generate the new password").click();
     cy.wait(1000);
@@ -31,10 +32,11 @@ describe("Password Generation", () => {
         expect(password).to.match(/[.,&%$!?¿]/);
       });
   });
+
   it("Generate a password without special characters", () => {
     cy.visit("http://localhost:5173");
 
-    cy.get('input[id="no"]').check();
+    cy.get("#no").check();
 
     cy.contains("Generate the new password").click();
     cy.wait(1000);
@@ -44,5 +46,27 @@ describe("Password Generation", () => {
       .then((password) => {
         expect(password).not.match(/[.,&%$!?¿]/);
       });
+  });
+
+  it("generates a password with the selected length", () => {
+    cy.visit("http://localhost:5173");
+
+    const selectedLength = 25;
+    cy.get("#rangeInput")
+      .as("range")
+      .invoke("val", selectedLength)
+      .trigger("input");
+
+    cy.wait(1000);
+    cy.get("#charCounter").should("have.text", selectedLength);
+
+    cy.get("#yes").check();
+
+    cy.get("button").click();
+    cy.wait(1000);
+
+    cy.get("#finallyPassword").then((text) => {
+      expect(text.text().length).equal(selectedLength);
+    });
   });
 });

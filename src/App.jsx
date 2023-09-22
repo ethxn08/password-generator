@@ -16,13 +16,14 @@ function App() {
         <h1>Password Gen</h1>
         <div>
           <p>Enter the number of characters you want your password to have</p>
-          <p>{charCounter}</p>
+          <p id="charCounter">{charCounter}</p>
           <input
+            id="rangeInput"
             type="range"
             min="1"
             max="35"
-            defaultValue={9}
-            onChange={(e) => setCharCounter(e.target.value)}
+            value={charCounter}
+            onInput={(e) => setCharCounter(e.target.value)}
           />
         </div>
         <div>
@@ -34,8 +35,8 @@ function App() {
             id="yes"
             name="option"
             value="yes"
-            checked={selectedOption === "yes"} // Verifica si está seleccionado
-            onChange={handleOptionChange} // Maneja el cambio
+            checked={selectedOption === "yes"}
+            onChange={handleOptionChange}
           />
           <label htmlFor="no">No</label>
           <input
@@ -43,8 +44,8 @@ function App() {
             id="no"
             name="option"
             value="no"
-            checked={selectedOption === "no"} // Verifica si está seleccionado
-            onChange={handleOptionChange} // Maneja el cambio
+            checked={selectedOption === "no"}
+            onChange={handleOptionChange}
           />
         </div>
         <button
@@ -57,7 +58,7 @@ function App() {
 
         <div>
           {randomPassword !== "" && <h2>Your password is: </h2>}
-          <h3>{randomPassword}</h3>
+          <h3 id="finallyPassword">{randomPassword}</h3>
         </div>
       </div>
     </>
